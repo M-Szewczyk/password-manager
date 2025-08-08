@@ -18,8 +18,15 @@ def initialize_db():
     conn.commit()
     conn.close()
 
+def get_connection():
+    return sqlite3.connect("accounts.db")
+
+def commit_and_close_connection(conn):
+    conn.commit()
+    conn.close()
+
 def add_account_to_db(website, email, password):
-    conn = sqlite3.connect("accounts.db")
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute(
@@ -27,8 +34,26 @@ def add_account_to_db(website, email, password):
         (website, email, password)
     )
 
-    conn.commit()
-    conn.close()
+    commit_and_close_connection(conn)
 
+def search_db_for_account(website):
+    conn = get_connection()
+    cursor = conn.cursor()
 
+    cursor.execute(
+        "SELECT * FROM accounts WHERE website = ?", (website, )
+    )
+    rows = cursor.fetchall()
+
+    commit_and_close_connection(conn)
+
+    accounts = []
+    for row in rows:
+        accounts.append({
+            "id": row[0],
+            "website": row[1],
+            "email": row[2],
+            "password": row[3]
+        })
+    return accounts
 

@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from controller import add_credentials, generate_password
+from controller import add_credentials, generate_password, show_the_credentials
 import sv_ttk
 
 class UserInterface:
@@ -35,19 +35,22 @@ class UserInterface:
         self.website_entry.focus()
 
         self.email_entry = ttk.Entry(font=("Arial",28, "normal"))
-        self.email_entry.grid(row=2, column=1, columnspan=2, sticky="ew")
+        self.email_entry.grid(row=2, column=1, columnspan=3, sticky="ew")
 
         self.password_entry = ttk.Entry(width=21, font=("Arial",28,"normal"))
         self.password_entry.grid(row=3, column=1, sticky="ew", padx=2, pady=2)
 
         self.generate_password_button = Button(text="Generate Password", font=("Arial",20, "normal"), command=self.generate_password_button_on_clicked)
-        self.generate_password_button.grid(row=3, column=2, sticky="ew", padx=10, pady=10)
+        self.generate_password_button.grid(row=3, column=2, columnspan=2, sticky="ew", padx=10, pady=10)
 
         self.add_button = Button(text="Add", font=("Arial",20, "normal"), command=self.add_button_on_clicked)
-        self.add_button.grid(row=4, column=1, columnspan=2, sticky="ew", padx=10, pady=10)
+        self.add_button.grid(row=4, column=1, columnspan=3, sticky="ew", padx=10, pady=10)
 
-        self.search_button = Button(text="Search", font=("Arial",20, "normal"))
+        self.search_button = Button(text="Search", font=("Arial",20, "normal"), command = self.search_button_on_clicked)
         self.search_button.grid(row=1, column=2, sticky="ew", padx=10, pady=10)
+
+        self.delete_button = Button(text="Delete", font=("Arial",20,"normal"))
+        self.delete_button.grid(row=1, column=3, sticky="ew", padx=10, pady=10)
 
         self.window.mainloop()
 
@@ -74,3 +77,8 @@ class UserInterface:
         random_password = generate_password()
         self.password_entry.delete(0, END)
         self.password_entry.insert(0, random_password)
+
+    def search_button_on_clicked(self):
+        website = self.website_entry.get()
+        show_the_credentials(website)
+
