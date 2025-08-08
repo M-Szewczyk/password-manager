@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from controller import add_credentials, generate_password, show_the_credentials
+from controller import add_credentials, generate_password, show_credentials
 import sv_ttk
 
 class UserInterface:
@@ -80,5 +80,5 @@ class UserInterface:
 
     def search_button_on_clicked(self):
         website = self.website_entry.get()
-        show_the_credentials(website)
+        show_credentials(website)
 

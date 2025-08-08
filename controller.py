@@ -10,8 +10,9 @@ def add_credentials(website, email, password):
         return False
 
     existing_accounts = db.search_db_for_account(website)
+    print(existing_accounts)
     for account in existing_accounts:
-        if account[2] == email:
+        if account["email"] == email:
             messagebox.showwarning("Duplicate entry",f"This email is already in use for {website}.")
             return False
 
@@ -29,7 +30,7 @@ def generate_password():
     random_password = ''.join(random.choice(characters) for i in range(16))
     return random_password
 
-def show_the_credentials(website):
+def show_credentials(website):
     accounts = search_db_for_account(website)
 
     if not accounts:
@@ -38,5 +39,5 @@ def show_the_credentials(website):
 
     message = f"Website: {website} \n"
     for account in accounts:
-        message += f"Email: {account["email"]} \n Password: {account["password"]} \n\n"
+        message += f"Email: {account["email"]} \nPassword: {account["password"]} \n\n"
     messagebox.showinfo("Credentials found", message.strip())
