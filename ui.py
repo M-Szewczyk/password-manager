@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from controller import add_credentials, generate_password, show_credentials
+from controller import add_credentials, generate_password, show_credentials, delete_credentials
 import sv_ttk
 
 class UserInterface:
@@ -49,7 +49,7 @@ class UserInterface:
         self.search_button = Button(text="Search", font=("Arial",20, "normal"), command = self.search_button_on_clicked)
         self.search_button.grid(row=1, column=2, sticky="ew", padx=10, pady=10)
 
-        self.delete_button = Button(text="Delete", font=("Arial",20,"normal"))
+        self.delete_button = Button(text="Delete", font=("Arial",20,"normal"), command = self.delete_button_on_clicked)
         self.delete_button.grid(row=1, column=3, sticky="ew", padx=10, pady=10)
 
         self.window.mainloop()
@@ -81,4 +81,9 @@ class UserInterface:
     def search_button_on_clicked(self):
         website = self.website_entry.get()
         show_credentials(website)
+
+    def delete_button_on_clicked(self):
+        website = self.website_entry.get()
+        delete_credentials(website)
+
 

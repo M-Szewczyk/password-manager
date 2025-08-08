@@ -36,12 +36,13 @@ def add_account_to_db(website, email, password):
 
     commit_and_close_connection(conn)
 
-def search_db_for_account(website):
+def search_db_for_accounts(website):
     conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT * FROM accounts WHERE website = ?", (website, )
+        "SELECT * FROM accounts WHERE website = ?",
+        (website, )
     )
     rows = cursor.fetchall()
 
@@ -57,3 +58,13 @@ def search_db_for_account(website):
         })
     return accounts
 
+def delete_accounts_from_db(website):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor. execute(
+        "DELETE FROM accounts WHERE website = ?",
+        (website, )
+    )
+
+    commit_and_close_connection(conn)
