@@ -2,7 +2,6 @@ import sqlite3
 
 
 def initialize_db():
-
     conn = sqlite3.connect("accounts.db")
     cursor = conn.cursor()
 
@@ -20,7 +19,6 @@ def initialize_db():
     conn.close()
 
 def add_account_to_db(website, email, password):
-
     conn = sqlite3.connect("accounts.db")
     cursor = conn.cursor()
 

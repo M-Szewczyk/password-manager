@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from controller import add_credentials
+from controller import add_credentials, generate_password
 import sv_ttk
 
 class UserInterface:
@@ -40,7 +40,7 @@ class UserInterface:
         self.password_entry = ttk.Entry(width=21, font=("Arial",28,"normal"))
         self.password_entry.grid(row=3, column=1, sticky="ew", padx=2, pady=2)
 
-        self.generate_password_button = Button(text="Generate Password", font=("Arial",20, "normal"))
+        self.generate_password_button = Button(text="Generate Password", font=("Arial",20, "normal"), command=self.generate_password_button_on_clicked)
         self.generate_password_button.grid(row=3, column=2, sticky="ew", padx=10, pady=10)
 
         self.add_button = Button(text="Add", font=("Arial",20, "normal"), command=self.add_button_on_clicked)
@@ -70,3 +70,7 @@ class UserInterface:
         if success:
             self.clear_input_fields()
 
+    def generate_password_button_on_clicked(self):
+        random_password = generate_password()
+        self.password_entry.delete(0, END)
+        self.password_entry.insert(0, random_password)
