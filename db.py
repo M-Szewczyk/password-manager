@@ -19,7 +19,7 @@ def initialize_db():
     conn.commit()
     conn.close()
 
-def add_account(website, email, password):
+def add_account_to_db(website, email, password):
 
     conn = sqlite3.connect("accounts.db")
     cursor = conn.cursor()

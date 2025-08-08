@@ -1,8 +1,6 @@
 from tkinter import *
-from tkinter import messagebox, ttk
-
-import db
-from db import *
+from tkinter import ttk
+from controller import add_credentials
 import sv_ttk
 
 class UserInterface:
@@ -45,7 +43,7 @@ class UserInterface:
         self.generate_password_button = Button(text="Generate Password", font=("Arial",20, "normal"))
         self.generate_password_button.grid(row=3, column=2, sticky="ew", padx=10, pady=10)
 
-        self.add_button = Button(text="Add", font=("Arial",20, "normal"), command=self.add_credentials)
+        self.add_button = Button(text="Add", font=("Arial",20, "normal"), command=self.add_button_on_clicked)
         self.add_button.grid(row=4, column=1, columnspan=2, sticky="ew", padx=10, pady=10)
 
         self.search_button = Button(text="Search", font=("Arial",20, "normal"))
@@ -53,13 +51,22 @@ class UserInterface:
 
         self.window.mainloop()
 
-    def add_credentials(self):
-        website = self.website_entry.get()
-        email = self.email_entry.get()
-        password = self.password_entry.get()
-
-        db.add_account(website, email, password)
-
+    def clear_input_fields(self):
         self.website_entry.delete(0, END)
         self.email_entry.delete(0, END)
         self.password_entry.delete(0, END)
+
+    def get_input_fields(self):
+        website = self.website_entry.get()
+        email = self.email_entry.get()
+        password = self.password_entry.get()
+        return website, email, password
+
+    def add_button_on_clicked(self):
+        website, email, password = self.get_input_fields()
+
+        success = add_credentials(website, email, password)
+
+        if success:
+            self.clear_input_fields()
+
