@@ -12,7 +12,7 @@ def prompt_master_password(root):
         master_password = simpledialog.askstring("Create master password", "Please create the master password:", show="*", parent=root)
 
         if not master_password:
-            messagebox.showerror("Empty password","Password cannot be empty!",show="*", parent=root)
+            messagebox.showerror("Empty password","Password cannot be empty!", parent=root)
             root.destroy()
             sys.exit(1)
         reentered_master_password = simpledialog.askstring("Re-enter master password", "Please re-enter the master password:", show="*", parent=root)
