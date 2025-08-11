@@ -84,5 +84,6 @@ class UserInterface:
     def delete_button_on_clicked(self):
         website = self.website_entry.get()
         delete_credentials(website)
+        self.clear_input_fields()
 
 

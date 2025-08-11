@@ -9,13 +9,13 @@ def prompt_master_password(root):
     # first launch, "master.hash" file does not exist
 
     if not master_password_is_set():
-        master_password = simpledialog.askstring("Create master password", "Please create the master password:", parent=root)
+        master_password = simpledialog.askstring("Create master password", "Please create the master password:", show="*", parent=root)
 
         if not master_password:
-            messagebox.showerror("Empty password","Password cannot be empty!", parent=root)
+            messagebox.showerror("Empty password","Password cannot be empty!",show="*", parent=root)
             root.destroy()
             sys.exit(1)
-        reentered_master_password = simpledialog.askstring("Re-enter master password", "Please re-enter the master password:", parent=root)
+        reentered_master_password = simpledialog.askstring("Re-enter master password", "Please re-enter the master password:", show="*", parent=root)
 
         if master_password != reentered_master_password:
             messagebox.showerror("Passwords do not match","Passwords do not match. Exiting app.", parent=root)
@@ -26,7 +26,7 @@ def prompt_master_password(root):
 
     # normal launch, "master.hash" file does exist
     else:
-        master_password = simpledialog.askstring("Enter master password", "Please enter the master password.", parent=root)
+        master_password = simpledialog.askstring("Enter master password", "Please enter the master password.", show="*", parent=root)
         if not master_password:
             messagebox.showerror("Empty password", "Password cannot be empty!", parent=root)
             root.destroy()
