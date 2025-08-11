@@ -4,8 +4,8 @@ from controller import add_credentials, generate_password, show_credentials, del
 import sv_ttk
 
 class UserInterface:
-    def __init__(self):
-        self.window = Tk()
+    def __init__(self, root):
+        self.window = root
         self.window.title("Password Manager")
         self.window.config(padx=50, pady=50)
 
@@ -52,7 +52,6 @@ class UserInterface:
         self.delete_button = Button(text="Delete", font=("Arial",20,"normal"), command = self.delete_button_on_clicked)
         self.delete_button.grid(row=1, column=3, sticky="ew", padx=10, pady=10)
 
-        self.window.mainloop()
 
     def clear_input_fields(self):
         self.website_entry.delete(0, END)
