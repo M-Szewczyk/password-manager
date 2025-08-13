@@ -3,7 +3,7 @@ from crypto import encrypt_password, decrypt_password
 
 
 def initialize_db():
-    conn = sqlite3.connect("accounts.db")
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute('''

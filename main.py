@@ -10,7 +10,7 @@ def main():
     root = Tk()
     UserInterface(root)
 
-    root.after_idle(prompt_master_password, root)  # then prompt on top
+    root.after_idle(prompt_master_password, root)
     root.mainloop()
 
 if __name__ == "__main__":
